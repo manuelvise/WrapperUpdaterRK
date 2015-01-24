@@ -13,11 +13,14 @@ import introsde.storage.ws.PeopleService;
 import introsde.storage.ws.PeopleStorageService;
 import introsde.storage.ws.Person;
 import introsde.wrapper.model.Activities;
+import introsde.wrapper.util.HttpGetRequestRK;
+import introsde.wrapper.util.RunKConstants;
 
 import javax.jws.WebService;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.json.JSONObject;
 
 //Service Implementation
 
@@ -58,7 +61,7 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 			HealthMeasureHistory healthMeasureHistory =  
 			    mapper.map(itemWeight, HealthMeasureHistory.class);
 			
-			Long userId = rkAdapter.getUserId(accessToken);
+			Long userId = getUserId(accessToken);
 			
 			healthMeasureHistory.setPerson(peopleStorageData.readPerson(userId));
 			
@@ -69,5 +72,16 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 		return measuresListWeight;
 	}
 
-	
+	@Override
+	public Long getUserId(String accessToken) {
+		HttpGetRequestRK activitiesRequest = new HttpGetRequestRK(
+				RunKConstants.REST_URL, "user", accessToken,
+				RunKConstants.MEDIA_USER);
+		String responseFromRunkeeper = activitiesRequest.getResponse();
+
+		Long userId = null;
+		JSONObject jsonToken = new JSONObject(responseFromRunkeeper);
+		userId = (Long) jsonToken.get("userID");
+		return userId;
+	}
 }

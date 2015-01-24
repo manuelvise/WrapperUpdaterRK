@@ -58,21 +58,6 @@ public interface AdapterRunkeeper {
      * 
      * @param accessToken
      * @return
-     *     returns java.lang.Long
-     */
-    @WebMethod
-    @WebResult(name = "userId", targetNamespace = "")
-    @RequestWrapper(localName = "getUserId", targetNamespace = "http://ws.adapter.introsde/", className = "introsde.adapter.ws.GetUserId")
-    @ResponseWrapper(localName = "getUserIdResponse", targetNamespace = "http://ws.adapter.introsde/", className = "introsde.adapter.ws.GetUserIdResponse")
-    @Action(input = "http://ws.adapter.introsde/AdapterRunkeeper/getUserIdRequest", output = "http://ws.adapter.introsde/AdapterRunkeeper/getUserIdResponse")
-    public Long getUserId(
-        @WebParam(name = "accessToken", targetNamespace = "")
-        String accessToken);
-
-    /**
-     * 
-     * @param accessToken
-     * @return
      *     returns introsde.adapter.ws.Profile
      */
     @WebMethod

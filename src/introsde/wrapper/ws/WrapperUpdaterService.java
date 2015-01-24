@@ -27,6 +27,8 @@ public interface WrapperUpdaterService {
     @WebResult(name="weight") 
     public List<HealthMeasureHistory> getMeasureHistoryFromWeightRK(@WebParam(name="accessToken") String accessToken);
 	
-	
+	@WebMethod(operationName="getUserId")
+    @WebResult(name="userId") 
+    public Long getUserId(@WebParam(name="accessToken") String accessToken);
  
    }

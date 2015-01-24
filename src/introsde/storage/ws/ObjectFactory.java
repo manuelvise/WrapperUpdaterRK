@@ -26,19 +26,23 @@ public class ObjectFactory {
 
     private final static QName _DeletePerson_QNAME = new QName("http://ws.storage.introsde/", "deletePerson");
     private final static QName _ReadPersonMeasurementResponse_QNAME = new QName("http://ws.storage.introsde/", "readPersonMeasurementResponse");
+    private final static QName _SaveMeasureDefinition_QNAME = new QName("http://ws.storage.introsde/", "saveMeasureDefinition");
     private final static QName _UpdatePersonMeasure_QNAME = new QName("http://ws.storage.introsde/", "updatePersonMeasure");
     private final static QName _ReadPersonResponse_QNAME = new QName("http://ws.storage.introsde/", "readPersonResponse");
     private final static QName _UpdatePersonHealthProfileResponse_QNAME = new QName("http://ws.storage.introsde/", "updatePersonHealthProfileResponse");
+    private final static QName _SaveMeasureDefinitionResponse_QNAME = new QName("http://ws.storage.introsde/", "saveMeasureDefinitionResponse");
     private final static QName _UpdatePerson_QNAME = new QName("http://ws.storage.introsde/", "updatePerson");
     private final static QName _MeasureDefinition_QNAME = new QName("http://ws.storage.introsde/", "measureDefinition");
     private final static QName _SavePersonMeasurementResponse_QNAME = new QName("http://ws.storage.introsde/", "savePersonMeasurementResponse");
     private final static QName _GetPersonListResponse_QNAME = new QName("http://ws.storage.introsde/", "getPersonListResponse");
     private final static QName _DeletePersonResponse_QNAME = new QName("http://ws.storage.introsde/", "deletePersonResponse");
+    private final static QName _GetCompleteMeasureTypeFromName_QNAME = new QName("http://ws.storage.introsde/", "getCompleteMeasureTypeFromName");
     private final static QName _ReadPersonMeasureByDatesResponse_QNAME = new QName("http://ws.storage.introsde/", "readPersonMeasureByDatesResponse");
     private final static QName _ReadMeasureTypesResponse_QNAME = new QName("http://ws.storage.introsde/", "readMeasureTypesResponse");
     private final static QName _ReadPersonListByMeasurementRangeResponse_QNAME = new QName("http://ws.storage.introsde/", "readPersonListByMeasurementRangeResponse");
     private final static QName _Person_QNAME = new QName("http://ws.storage.introsde/", "person");
     private final static QName _HealthMeasureHistory_QNAME = new QName("http://ws.storage.introsde/", "healthMeasureHistory");
+    private final static QName _GetCompleteMeasureTypeFromNameResponse_QNAME = new QName("http://ws.storage.introsde/", "getCompleteMeasureTypeFromNameResponse");
     private final static QName _SavePersonMeasurement_QNAME = new QName("http://ws.storage.introsde/", "savePersonMeasurement");
     private final static QName _Measure_QNAME = new QName("http://ws.storage.introsde/", "Measure");
     private final static QName _MeasureDefaultRange_QNAME = new QName("http://ws.storage.introsde/", "measureDefaultRange");
@@ -85,6 +89,14 @@ public class ObjectFactory {
      */
     public HealthMeasureHistory createHealthMeasureHistory() {
         return new HealthMeasureHistory();
+    }
+
+    /**
+     * Create an instance of {@link GetCompleteMeasureTypeFromNameResponse }
+     * 
+     */
+    public GetCompleteMeasureTypeFromNameResponse createGetCompleteMeasureTypeFromNameResponse() {
+        return new GetCompleteMeasureTypeFromNameResponse();
     }
 
     /**
@@ -232,6 +244,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SaveMeasureDefinition }
+     * 
+     */
+    public SaveMeasureDefinition createSaveMeasureDefinition() {
+        return new SaveMeasureDefinition();
+    }
+
+    /**
      * Create an instance of {@link UpdatePersonMeasure }
      * 
      */
@@ -253,6 +273,14 @@ public class ObjectFactory {
      */
     public UpdatePersonHealthProfileResponse createUpdatePersonHealthProfileResponse() {
         return new UpdatePersonHealthProfileResponse();
+    }
+
+    /**
+     * Create an instance of {@link SaveMeasureDefinitionResponse }
+     * 
+     */
+    public SaveMeasureDefinitionResponse createSaveMeasureDefinitionResponse() {
+        return new SaveMeasureDefinitionResponse();
     }
 
     /**
@@ -293,6 +321,14 @@ public class ObjectFactory {
      */
     public DeletePersonResponse createDeletePersonResponse() {
         return new DeletePersonResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetCompleteMeasureTypeFromName }
+     * 
+     */
+    public GetCompleteMeasureTypeFromName createGetCompleteMeasureTypeFromName() {
+        return new GetCompleteMeasureTypeFromName();
     }
 
     /**
@@ -346,6 +382,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveMeasureDefinition }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "saveMeasureDefinition")
+    public JAXBElement<SaveMeasureDefinition> createSaveMeasureDefinition(SaveMeasureDefinition value) {
+        return new JAXBElement<SaveMeasureDefinition>(_SaveMeasureDefinition_QNAME, SaveMeasureDefinition.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePersonMeasure }{@code >}}
      * 
      */
@@ -370,6 +415,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "updatePersonHealthProfileResponse")
     public JAXBElement<UpdatePersonHealthProfileResponse> createUpdatePersonHealthProfileResponse(UpdatePersonHealthProfileResponse value) {
         return new JAXBElement<UpdatePersonHealthProfileResponse>(_UpdatePersonHealthProfileResponse_QNAME, UpdatePersonHealthProfileResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveMeasureDefinitionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "saveMeasureDefinitionResponse")
+    public JAXBElement<SaveMeasureDefinitionResponse> createSaveMeasureDefinitionResponse(SaveMeasureDefinitionResponse value) {
+        return new JAXBElement<SaveMeasureDefinitionResponse>(_SaveMeasureDefinitionResponse_QNAME, SaveMeasureDefinitionResponse.class, null, value);
     }
 
     /**
@@ -418,6 +472,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCompleteMeasureTypeFromName }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "getCompleteMeasureTypeFromName")
+    public JAXBElement<GetCompleteMeasureTypeFromName> createGetCompleteMeasureTypeFromName(GetCompleteMeasureTypeFromName value) {
+        return new JAXBElement<GetCompleteMeasureTypeFromName>(_GetCompleteMeasureTypeFromName_QNAME, GetCompleteMeasureTypeFromName.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ReadPersonMeasureByDatesResponse }{@code >}}
      * 
      */
@@ -460,6 +523,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "healthMeasureHistory")
     public JAXBElement<HealthMeasureHistory> createHealthMeasureHistory(HealthMeasureHistory value) {
         return new JAXBElement<HealthMeasureHistory>(_HealthMeasureHistory_QNAME, HealthMeasureHistory.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCompleteMeasureTypeFromNameResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.storage.introsde/", name = "getCompleteMeasureTypeFromNameResponse")
+    public JAXBElement<GetCompleteMeasureTypeFromNameResponse> createGetCompleteMeasureTypeFromNameResponse(GetCompleteMeasureTypeFromNameResponse value) {
+        return new JAXBElement<GetCompleteMeasureTypeFromNameResponse>(_GetCompleteMeasureTypeFromNameResponse_QNAME, GetCompleteMeasureTypeFromNameResponse.class, null, value);
     }
 
     /**

@@ -24,14 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetUserIdResponse_QNAME = new QName("http://ws.adapter.introsde/", "getUserIdResponse");
     private final static QName _GetUserResponse_QNAME = new QName("http://ws.adapter.introsde/", "getUserResponse");
     private final static QName _GetWeight_QNAME = new QName("http://ws.adapter.introsde/", "getWeight");
     private final static QName _GetFitnessActivities_QNAME = new QName("http://ws.adapter.introsde/", "getFitnessActivities");
     private final static QName _GetWeightResponse_QNAME = new QName("http://ws.adapter.introsde/", "getWeightResponse");
     private final static QName _GetUser_QNAME = new QName("http://ws.adapter.introsde/", "getUser");
     private final static QName _GetFitnessActivitiesResponse_QNAME = new QName("http://ws.adapter.introsde/", "getFitnessActivitiesResponse");
-    private final static QName _GetUserId_QNAME = new QName("http://ws.adapter.introsde/", "getUserId");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: introsde.adapter.ws
@@ -46,14 +44,6 @@ public class ObjectFactory {
      */
     public GetUser createGetUser() {
         return new GetUser();
-    }
-
-    /**
-     * Create an instance of {@link GetUserId }
-     * 
-     */
-    public GetUserId createGetUserId() {
-        return new GetUserId();
     }
 
     /**
@@ -86,14 +76,6 @@ public class ObjectFactory {
      */
     public GetUserResponse createGetUserResponse() {
         return new GetUserResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUserIdResponse }
-     * 
-     */
-    public GetUserIdResponse createGetUserIdResponse() {
-        return new GetUserIdResponse();
     }
 
     /**
@@ -142,15 +124,6 @@ public class ObjectFactory {
      */
     public Profile createProfile() {
         return new Profile();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserIdResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.adapter.introsde/", name = "getUserIdResponse")
-    public JAXBElement<GetUserIdResponse> createGetUserIdResponse(GetUserIdResponse value) {
-        return new JAXBElement<GetUserIdResponse>(_GetUserIdResponse_QNAME, GetUserIdResponse.class, null, value);
     }
 
     /**
@@ -205,15 +178,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.adapter.introsde/", name = "getFitnessActivitiesResponse")
     public JAXBElement<GetFitnessActivitiesResponse> createGetFitnessActivitiesResponse(GetFitnessActivitiesResponse value) {
         return new JAXBElement<GetFitnessActivitiesResponse>(_GetFitnessActivitiesResponse_QNAME, GetFitnessActivitiesResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserId }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.adapter.introsde/", name = "getUserId")
-    public JAXBElement<GetUserId> createGetUserId(GetUserId value) {
-        return new JAXBElement<GetUserId>(_GetUserId_QNAME, GetUserId.class, null, value);
     }
 
 }
