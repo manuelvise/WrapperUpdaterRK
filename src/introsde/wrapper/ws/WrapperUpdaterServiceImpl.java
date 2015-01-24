@@ -1,25 +1,73 @@
 package introsde.wrapper.ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import introsde.adapter.ws.AdapterRunkeeper;
+import introsde.adapter.ws.AdapterRunkeeperService;
+import introsde.adapter.ws.ItemWeight;
+import introsde.adapter.ws.Weights;
+import introsde.storage.ws.HealthMeasureHistory;
+import introsde.storage.ws.People;
+import introsde.storage.ws.PeopleService;
+import introsde.storage.ws.PeopleStorageService;
+import introsde.storage.ws.Person;
 import introsde.wrapper.model.Activities;
-import introsde.wrapper.model.HealthMeasureHistory;
+
 import javax.jws.WebService;
+
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 //Service Implementation
 
-@WebService(endpointInterface = "introsde.document.ws.ExtAdapterRunkeeper", serviceName = "AdapterRunkeeperService")
+@WebService(endpointInterface = "introsde.wrapper.ws.WrapperUpdaterService", serviceName = "WrapperUpdaterService")
 public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
+	
+	private AdapterRunkeeper rkAdapter;
+	private People peopleStorageData;
+	
+	public WrapperUpdaterServiceImpl() {
+		AdapterRunkeeperService adapterService = new AdapterRunkeeperService();
+        rkAdapter = adapterService.getAdapterRunkeeperImplPort();
+        
+        PeopleStorageService peopleService = new PeopleStorageService();
+        peopleStorageData = peopleService.getPeopleImplPort();
+	}
 
 	
 	@Override
 	public Activities getRunFromFitnessActivitiesRK(String accessToken) {
-		// TODO Auto-generated method stub
+		
+		rkAdapter.getFitnessActivities(accessToken);
+		
 		return null;
 	}
 
 	@Override
-	public HealthMeasureHistory getMeasureHistoryFromWeightRK(String accessToken) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HealthMeasureHistory> getMeasureHistoryFromWeightRK(String accessToken) {
+		
+		Weights weights = rkAdapter.getWeight(accessToken);
+		List<HealthMeasureHistory> measuresListWeight = new ArrayList<HealthMeasureHistory>();
+		
+		for (ItemWeight itemWeight : weights.getItems()) {
+			DozerBeanMapper mapper = new DozerBeanMapper();
+			List myMappingFiles = new ArrayList<String>();
+		    myMappingFiles.add("File:./MappingWeights.xml");
+			mapper.setMappingFiles(myMappingFiles);
+			HealthMeasureHistory healthMeasureHistory =  
+			    mapper.map(itemWeight, HealthMeasureHistory.class);
+			
+			Long userId = rkAdapter.getUserId(accessToken);
+			
+			healthMeasureHistory.setPerson(peopleStorageData.readPerson(userId));
+			
+			measuresListWeight.add(healthMeasureHistory);
+		}
+				
+		
+		return measuresListWeight;
 	}
 
+	
 }

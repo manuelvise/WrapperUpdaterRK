@@ -1,8 +1,8 @@
 package introsde.wrapper.ws;
 
+import introsde.storage.ws.HealthMeasureHistory;
 import introsde.wrapper.model.Activities;
 import introsde.wrapper.model.Weights;
-import introsde.wrapper.model.HealthMeasureHistory;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface WrapperUpdaterService {
 	
 	@WebMethod(operationName="getMeasureHistoryFromWeightRK")
     @WebResult(name="weight") 
-    public HealthMeasureHistory getMeasureHistoryFromWeightRK(@WebParam(name="accessToken") String accessToken);
+    public List<HealthMeasureHistory> getMeasureHistoryFromWeightRK(@WebParam(name="accessToken") String accessToken);
 	
 	
  

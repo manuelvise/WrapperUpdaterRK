@@ -20,8 +20,8 @@
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
     <info
-        organisation="introsde"
-        module="sde2"
+        organisation="introsde-wrapperRK"
+        module="sde-final-project"
         status="integration">
 	</info>
 	
@@ -77,7 +77,7 @@
         <dependency org="com.googlecode.json-simple" name="json-simple" rev="1.1.1"/>
 
         <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.11"/>
-            
+    	<dependency org="net.sf.dozer" name="dozer" rev="5.3.2"/>
         
     </dependencies>
 	
