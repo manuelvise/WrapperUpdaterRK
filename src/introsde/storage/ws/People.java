@@ -99,6 +99,42 @@ public interface People {
 
     /**
      * 
+     * @param minValue
+     * @param measureType
+     * @param maxValue
+     * @return
+     *     returns java.util.List<introsde.storage.ws.Person>
+     */
+    @WebMethod
+    @WebResult(name = "ListOfMeasureOnRange", targetNamespace = "")
+    @RequestWrapper(localName = "readPersonListByMeasurementRange", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonListByMeasurementRange")
+    @ResponseWrapper(localName = "readPersonListByMeasurementRangeResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonListByMeasurementRangeResponse")
+    @Action(input = "http://ws.storage.introsde/People/readPersonListByMeasurementRangeRequest", output = "http://ws.storage.introsde/People/readPersonListByMeasurementRangeResponse")
+    public List<Person> readPersonListByMeasurementRange(
+        @WebParam(name = "measureType", targetNamespace = "")
+        String measureType,
+        @WebParam(name = "maxValue", targetNamespace = "")
+        String maxValue,
+        @WebParam(name = "minValue", targetNamespace = "")
+        String minValue);
+
+    /**
+     * 
+     * @param typeMeasure
+     * @return
+     *     returns introsde.storage.ws.MeasureDefinition
+     */
+    @WebMethod
+    @WebResult(name = "measureDefinition", targetNamespace = "http://ws.storage.introsde/")
+    @RequestWrapper(localName = "getCompleteMeasureTypeFromName", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromName")
+    @ResponseWrapper(localName = "getCompleteMeasureTypeFromNameResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromNameResponse")
+    @Action(input = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameRequest", output = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameResponse")
+    public MeasureDefinition getCompleteMeasureTypeFromName(
+        @WebParam(name = "typeMeasure", targetNamespace = "")
+        String typeMeasure);
+
+    /**
+     * 
      * @param personId
      * @param healthProfile
      * @return
@@ -123,11 +159,11 @@ public interface People {
      *     returns java.util.List<introsde.storage.ws.HealthMeasureHistory>
      */
     @WebMethod
-    @WebResult(name = "history", targetNamespace = "")
-    @RequestWrapper(localName = "readPersonHistory", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonHistory")
-    @ResponseWrapper(localName = "readPersonHistoryResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonHistoryResponse")
-    @Action(input = "http://ws.storage.introsde/People/readPersonHistoryRequest", output = "http://ws.storage.introsde/People/readPersonHistoryResponse")
-    public List<HealthMeasureHistory> readPersonHistory(
+    @WebResult(name = "localHistory", targetNamespace = "")
+    @RequestWrapper(localName = "readPersonLocalHistory", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonLocalHistory")
+    @ResponseWrapper(localName = "readPersonLocalHistoryResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonLocalHistoryResponse")
+    @Action(input = "http://ws.storage.introsde/People/readPersonLocalHistoryRequest", output = "http://ws.storage.introsde/People/readPersonLocalHistoryResponse")
+    public List<HealthMeasureHistory> readPersonLocalHistory(
         @WebParam(name = "personId", targetNamespace = "")
         Long personId,
         @WebParam(name = "measureType", targetNamespace = "")
@@ -243,38 +279,47 @@ public interface People {
 
     /**
      * 
-     * @param minValue
-     * @param measureType
-     * @param maxValue
+     * @param accessToken
      * @return
-     *     returns java.util.List<introsde.storage.ws.Person>
+     *     returns java.util.List<introsde.storage.ws.HealthMeasureHistory>
      */
     @WebMethod
-    @WebResult(name = "ListOfMeasureOnRange", targetNamespace = "")
-    @RequestWrapper(localName = "readPersonListByMeasurementRange", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonListByMeasurementRange")
-    @ResponseWrapper(localName = "readPersonListByMeasurementRangeResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonListByMeasurementRangeResponse")
-    @Action(input = "http://ws.storage.introsde/People/readPersonListByMeasurementRangeRequest", output = "http://ws.storage.introsde/People/readPersonListByMeasurementRangeResponse")
-    public List<Person> readPersonListByMeasurementRange(
-        @WebParam(name = "measureType", targetNamespace = "")
-        String measureType,
-        @WebParam(name = "maxValue", targetNamespace = "")
-        String maxValue,
-        @WebParam(name = "minValue", targetNamespace = "")
-        String minValue);
+    @WebResult(name = "remoteWeightHistory", targetNamespace = "")
+    @RequestWrapper(localName = "readPersonRemoteWeightHistory", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonRemoteWeightHistory")
+    @ResponseWrapper(localName = "readPersonRemoteWeightHistoryResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonRemoteWeightHistoryResponse")
+    @Action(input = "http://ws.storage.introsde/People/readPersonRemoteWeightHistoryRequest", output = "http://ws.storage.introsde/People/readPersonRemoteWeightHistoryResponse")
+    public List<HealthMeasureHistory> readPersonRemoteWeightHistory(
+        @WebParam(name = "accessToken", targetNamespace = "")
+        String accessToken);
 
     /**
      * 
-     * @param typeMeasure
+     * @param accessToken
      * @return
-     *     returns introsde.storage.ws.MeasureDefinition
+     *     returns java.lang.Long
      */
     @WebMethod
-    @WebResult(name = "measureDefinition", targetNamespace = "http://ws.storage.introsde/")
-    @RequestWrapper(localName = "getCompleteMeasureTypeFromName", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromName")
-    @ResponseWrapper(localName = "getCompleteMeasureTypeFromNameResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromNameResponse")
-    @Action(input = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameRequest", output = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameResponse")
-    public MeasureDefinition getCompleteMeasureTypeFromName(
-        @WebParam(name = "typeMeasure", targetNamespace = "")
-        String typeMeasure);
+    @WebResult(name = "RemotePersonId", targetNamespace = "")
+    @RequestWrapper(localName = "readRemotePersonId", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadRemotePersonId")
+    @ResponseWrapper(localName = "readRemotePersonIdResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadRemotePersonIdResponse")
+    @Action(input = "http://ws.storage.introsde/People/readRemotePersonIdRequest", output = "http://ws.storage.introsde/People/readRemotePersonIdResponse")
+    public Long readRemotePersonId(
+        @WebParam(name = "accessToken", targetNamespace = "")
+        String accessToken);
+
+    /**
+     * 
+     * @param accessToken
+     * @return
+     *     returns introsde.storage.ws.Person
+     */
+    @WebMethod
+    @WebResult(name = "remotePerson", targetNamespace = "")
+    @RequestWrapper(localName = "readRemotePerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadRemotePerson")
+    @ResponseWrapper(localName = "readRemotePersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadRemotePersonResponse")
+    @Action(input = "http://ws.storage.introsde/People/readRemotePersonRequest", output = "http://ws.storage.introsde/People/readRemotePersonResponse")
+    public Person readRemotePerson(
+        @WebParam(name = "accessToken", targetNamespace = "")
+        String accessToken);
 
 }

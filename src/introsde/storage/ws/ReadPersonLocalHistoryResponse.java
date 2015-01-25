@@ -9,16 +9,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for readPersonHistoryResponse complex type.
+ * <p>Java class for readPersonLocalHistoryResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="readPersonHistoryResponse">
+ * &lt;complexType name="readPersonLocalHistoryResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="history" type="{http://ws.storage.introsde/}healthMeasureHistory" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="localHistory" type="{http://ws.storage.introsde/}healthMeasureHistory" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,26 +28,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "readPersonHistoryResponse", propOrder = {
-    "history"
+@XmlType(name = "readPersonLocalHistoryResponse", propOrder = {
+    "localHistory"
 })
-public class ReadPersonHistoryResponse {
+public class ReadPersonLocalHistoryResponse {
 
-    protected List<HealthMeasureHistory> history;
+    protected List<HealthMeasureHistory> localHistory;
 
     /**
-     * Gets the value of the history property.
+     * Gets the value of the localHistory property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the history property.
+     * This is why there is not a <CODE>set</CODE> method for the localHistory property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getHistory().add(newItem);
+     *    getLocalHistory().add(newItem);
      * </pre>
      * 
      * 
@@ -57,11 +57,11 @@ public class ReadPersonHistoryResponse {
      * 
      * 
      */
-    public List<HealthMeasureHistory> getHistory() {
-        if (history == null) {
-            history = new ArrayList<HealthMeasureHistory>();
+    public List<HealthMeasureHistory> getLocalHistory() {
+        if (localHistory == null) {
+            localHistory = new ArrayList<HealthMeasureHistory>();
         }
-        return this.history;
+        return this.localHistory;
     }
 
 }

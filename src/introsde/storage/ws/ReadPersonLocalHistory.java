@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for readPersonHistory complex type.
+ * <p>Java class for readPersonLocalHistory complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="readPersonHistory">
+ * &lt;complexType name="readPersonLocalHistory">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,11 +27,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "readPersonHistory", propOrder = {
+@XmlType(name = "readPersonLocalHistory", propOrder = {
     "personId",
     "measureType"
 })
-public class ReadPersonHistory {
+public class ReadPersonLocalHistory {
 
     protected Long personId;
     protected String measureType;

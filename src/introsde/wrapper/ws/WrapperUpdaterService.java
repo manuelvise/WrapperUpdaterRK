@@ -1,9 +1,8 @@
 package introsde.wrapper.ws;
 
-import introsde.storage.ws.HealthMeasureHistory;
+import introsde.storage.ws.Person;
 import introsde.wrapper.model.Activities;
-import introsde.wrapper.model.Weights;
-
+import introsde.wrapper.model.MeasureWeight;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -11,8 +10,6 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.WebResult;
 import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.jws.soap.SOAPBinding.Use;
 
 @WebService
 @SOAPBinding
@@ -25,10 +22,14 @@ public interface WrapperUpdaterService {
 	
 	@WebMethod(operationName="getMeasureHistoryFromWeightRK")
     @WebResult(name="weight") 
-    public List<HealthMeasureHistory> getMeasureHistoryFromWeightRK(@WebParam(name="accessToken") String accessToken);
+    public List<MeasureWeight> getMeasureHistoryFromWeightRK(@WebParam(name="accessToken") String accessToken);
 	
 	@WebMethod(operationName="getUserId")
     @WebResult(name="userId") 
     public Long getUserId(@WebParam(name="accessToken") String accessToken);
+	
+	@WebMethod(operationName="getUser")
+    @WebResult(name="PersonJson") 
+    public String getPersonFromUserRK(@WebParam(name="accessToken") String accessToken);
  
    }
