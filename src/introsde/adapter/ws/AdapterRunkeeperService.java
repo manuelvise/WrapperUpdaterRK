@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AdapterRunkeeperService", targetNamespace = "http://ws.adapter.introsde/", wsdlLocation = "http://localhost:6902/ws/lifecoach/adapterextrunkeeper?wsdl")
+@WebServiceClient(name = "AdapterRunkeeperService", targetNamespace = "http://ws.adapter.introsde/", wsdlLocation = "http://localhost:6905/ws/lifecoach/adapterextrunkeeper?wsdl")
 public class AdapterRunkeeperService
     extends Service
 {
@@ -30,7 +30,7 @@ public class AdapterRunkeeperService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:6902/ws/lifecoach/adapterextrunkeeper?wsdl");
+            url = new URL("http://localhost:6905/ws/lifecoach/adapterextrunkeeper?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -2,7 +2,7 @@ package introsde.wrapper.model;
 
 public class MeasureWeight {
 	private String value;
-	private Long timestamp;
+	private String timestamp;
 
 	public String getValue() {
 		return value;
@@ -12,11 +12,11 @@ public class MeasureWeight {
 		this.value = value;
 	}
 
-	public Long getTimestamp() {
+	public String getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Long timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 

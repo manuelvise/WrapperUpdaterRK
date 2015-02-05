@@ -2,13 +2,14 @@ package introsde.wrapper.model;
 
 import introsde.wrapper.model.ItemActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Activities {
 
 	private int size;
 	
-	private List<ItemActivity> items;
+	private ArrayList<ItemActivity> items;
 	
 	public Activities() {
 		// TODO Auto-generated constructor stub
@@ -22,11 +23,11 @@ public class Activities {
 		this.size = size;
 	}
 
-	public List<ItemActivity> getItems() {
+	public ArrayList<ItemActivity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ItemActivity> items) {
+	public void setItems(ArrayList<ItemActivity> items) {
 		this.items = items;
 	}
 	

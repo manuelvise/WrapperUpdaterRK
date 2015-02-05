@@ -1,5 +1,6 @@
 package introsde.wrapper.ws;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,11 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 	@Override
 	public List<MeasureWeight> getMeasureHistoryFromWeightRK(String accessToken) {
 
+		List<MeasureWeight> measuresListWeight = null;
+		
+		try{
 		Weights weights = rkAdapter.getWeight(accessToken);
-		List<MeasureWeight> measuresListWeight = new ArrayList<MeasureWeight>();
+		measuresListWeight = new ArrayList<MeasureWeight>();
 
 		for (ItemWeight itemWeight : weights.getItems()) {
 			DozerBeanMapper mapper = new DozerBeanMapper();
@@ -57,7 +61,11 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 			mapper.setMappingFiles(myMappingFiles);
 			MeasureWeight healthMeasureHistory = mapper.map(itemWeight,
 					MeasureWeight.class);
+			//SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
 			measuresListWeight.add(healthMeasureHistory);
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return measuresListWeight;
@@ -70,21 +78,28 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 				RunKConstants.MEDIA_USER);
 		String responseFromRunkeeper = activitiesRequest.getResponse();
 
-		Long userId = null;
+		Integer userId = null;
 		JSONObject jsonToken = new JSONObject(responseFromRunkeeper);
-		userId = (Long) jsonToken.get("userID");
-		return userId;
+		userId = (Integer) jsonToken.get("userID");
+		
+		Long userIdLong = new Long(userId);
+		return userIdLong;
 	}
 
 	@Override
 	public String getPersonFromUserRK(String accessToken) {
 		Profile profile = rkAdapter.getUser(accessToken);
+		Person person = null;
+		try{
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		List myMappingFiles = new ArrayList<String>();
 		myMappingFiles.add("File:./MappingPerson.xml");
 		mapper.setMappingFiles(myMappingFiles);
-		Person person = mapper.map(profile,
+		person = mapper.map(profile,
 				Person.class);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		ObjectMapper mapperJson = new ObjectMapper();
 		try {
 			return mapperJson.writeValueAsString(person);

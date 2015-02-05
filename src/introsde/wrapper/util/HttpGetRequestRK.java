@@ -14,7 +14,8 @@ public class HttpGetRequestRK {
 	private String token;
 	private String accept;
 
-	public HttpGetRequestRK(String host, String query, String token, String accept) {
+	public HttpGetRequestRK(String host, String query, String token,
+			String accept) {
 		this.host = host;
 		this.query = query;
 		this.token = token;
@@ -24,29 +25,37 @@ public class HttpGetRequestRK {
 	public String getResponse() {
 
 		String output = null;
+		String strResponse = null;
 
 		try {
+			String url = host + "/" + query;
 
-			URL url = new URL(host + "/" + query);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", accept);
-			conn.setRequestProperty("Authorization", "Bearer " + token);
+			URL obj = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
+			// optional default is GET
+			con.setRequestMethod("GET");
+
+			con.addRequestProperty("Authorization", "Bearer " + token);
+			con.addRequestProperty("Accept", accept);
+
+			int responseCode = con.getResponseCode();
+			System.out.println("\nSending 'GET' request to URL : " + url);
+			System.out.println("Response Code : " + responseCode);
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
 			}
+			in.close();
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
-
-			conn.disconnect();
+			// print result
+			System.out.println(response.toString());
+			strResponse = response.toString();
 
 		} catch (MalformedURLException e) {
 
@@ -57,7 +66,7 @@ public class HttpGetRequestRK {
 			e.printStackTrace();
 
 		}
-		return output;
+		return strResponse;
 
 	}
 
