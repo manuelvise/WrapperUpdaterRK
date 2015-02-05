@@ -1,6 +1,5 @@
 package introsde.wrapper.ws;
 
-import introsde.storage.ws.Person;
 import introsde.wrapper.model.Activities;
 import introsde.wrapper.model.MeasureWeight;
 import java.util.List;
