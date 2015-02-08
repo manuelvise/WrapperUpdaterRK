@@ -50,16 +50,49 @@ public interface People {
      * 
      * @param typeMeasure
      * @return
-     *     returns introsde.storage.ws.MeasureDefinition
+     *     returns java.lang.String
      */
     @WebMethod
-    @WebResult(name = "measureDefinition", targetNamespace = "http://ws.storage.introsde/")
+    @WebResult(name = "measureDefinitionJson", targetNamespace = "")
     @RequestWrapper(localName = "getCompleteMeasureTypeFromName", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromName")
     @ResponseWrapper(localName = "getCompleteMeasureTypeFromNameResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetCompleteMeasureTypeFromNameResponse")
     @Action(input = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameRequest", output = "http://ws.storage.introsde/People/getCompleteMeasureTypeFromNameResponse")
-    public MeasureDefinition getCompleteMeasureTypeFromName(
+    public String getCompleteMeasureTypeFromName(
         @WebParam(name = "typeMeasure", targetNamespace = "")
         String typeMeasure);
+
+    /**
+     * 
+     * @param accessToken
+     * @return
+     *     returns java.util.List<introsde.storage.ws.HealthMeasureHistory>
+     */
+    @WebMethod
+    @WebResult(name = "ListOfActivities", targetNamespace = "")
+    @RequestWrapper(localName = "readPersonRemoteActivityHistory", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonRemoteActivityHistory")
+    @ResponseWrapper(localName = "readPersonRemoteActivityHistoryResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonRemoteActivityHistoryResponse")
+    @Action(input = "http://ws.storage.introsde/People/readPersonRemoteActivityHistoryRequest", output = "http://ws.storage.introsde/People/readPersonRemoteActivityHistoryResponse")
+    public List<HealthMeasureHistory> readPersonRemoteActivityHistory(
+        @WebParam(name = "accessToken", targetNamespace = "")
+        String accessToken);
+
+    /**
+     * 
+     * @param measure
+     * @param personId
+     * @return
+     *     returns introsde.storage.ws.HealthMeasureHistory
+     */
+    @WebMethod
+    @WebResult(name = "singleMeasureSaved", targetNamespace = "")
+    @RequestWrapper(localName = "saveIfnotExistPersonMeasurement", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.SaveIfnotExistPersonMeasurement")
+    @ResponseWrapper(localName = "saveIfnotExistPersonMeasurementResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.SaveIfnotExistPersonMeasurementResponse")
+    @Action(input = "http://ws.storage.introsde/People/saveIfnotExistPersonMeasurementRequest", output = "http://ws.storage.introsde/People/saveIfnotExistPersonMeasurementResponse")
+    public HealthMeasureHistory saveIfnotExistPersonMeasurement(
+        @WebParam(name = "personId", targetNamespace = "")
+        Long personId,
+        @WebParam(name = "measure", targetNamespace = "")
+        Measure measure);
 
     /**
      * 
@@ -84,78 +117,6 @@ public interface People {
         String value,
         @WebParam(name = "deadline", targetNamespace = "")
         Long deadline);
-
-    /**
-     * 
-     * @param personId
-     * @return
-     *     returns introsde.storage.ws.Person
-     */
-    @WebMethod
-    @WebResult(name = "person", targetNamespace = "http://ws.storage.introsde/")
-    @RequestWrapper(localName = "readPerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPerson")
-    @ResponseWrapper(localName = "readPersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonResponse")
-    @Action(input = "http://ws.storage.introsde/People/readPersonRequest", output = "http://ws.storage.introsde/People/readPersonResponse")
-    public Person readPerson(
-        @WebParam(name = "personId", targetNamespace = "")
-        Long personId);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<introsde.storage.ws.Person>
-     */
-    @WebMethod
-    @WebResult(name = "people", targetNamespace = "")
-    @RequestWrapper(localName = "getPersonList", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetPersonList")
-    @ResponseWrapper(localName = "getPersonListResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetPersonListResponse")
-    @Action(input = "http://ws.storage.introsde/People/getPersonListRequest", output = "http://ws.storage.introsde/People/getPersonListResponse")
-    public List<Person> getPersonList();
-
-    /**
-     * 
-     * @param person
-     * @return
-     *     returns introsde.storage.ws.Person
-     */
-    @WebMethod
-    @WebResult(name = "personId", targetNamespace = "")
-    @RequestWrapper(localName = "createPerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.CreatePerson")
-    @ResponseWrapper(localName = "createPersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.CreatePersonResponse")
-    @Action(input = "http://ws.storage.introsde/People/createPersonRequest", output = "http://ws.storage.introsde/People/createPersonResponse")
-    public Person createPerson(
-        @WebParam(name = "person", targetNamespace = "http://ws.storage.introsde/")
-        Person person);
-
-    /**
-     * 
-     * @param person
-     * @return
-     *     returns java.lang.Long
-     */
-    @WebMethod
-    @WebResult(name = "personId", targetNamespace = "")
-    @RequestWrapper(localName = "updatePerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.UpdatePerson")
-    @ResponseWrapper(localName = "updatePersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.UpdatePersonResponse")
-    @Action(input = "http://ws.storage.introsde/People/updatePersonRequest", output = "http://ws.storage.introsde/People/updatePersonResponse")
-    public Long updatePerson(
-        @WebParam(name = "person", targetNamespace = "http://ws.storage.introsde/")
-        Person person);
-
-    /**
-     * 
-     * @param personId
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "ValueResult", targetNamespace = "")
-    @RequestWrapper(localName = "deletePerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.DeletePerson")
-    @ResponseWrapper(localName = "deletePersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.DeletePersonResponse")
-    @Action(input = "http://ws.storage.introsde/People/deletePersonRequest", output = "http://ws.storage.introsde/People/deletePersonResponse")
-    public int deletePerson(
-        @WebParam(name = "personId", targetNamespace = "")
-        Long personId);
 
     /**
      * 
@@ -288,7 +249,7 @@ public interface People {
 
     /**
      * 
-     * @param measureDefinition
+     * @param measureDefinitionJson
      * @return
      *     returns introsde.storage.ws.MeasureDefinition
      */
@@ -298,8 +259,8 @@ public interface People {
     @ResponseWrapper(localName = "saveMeasureDefinitionResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.SaveMeasureDefinitionResponse")
     @Action(input = "http://ws.storage.introsde/People/saveMeasureDefinitionRequest", output = "http://ws.storage.introsde/People/saveMeasureDefinitionResponse")
     public MeasureDefinition saveMeasureDefinition(
-        @WebParam(name = "measureDefinition", targetNamespace = "http://ws.storage.introsde/")
-        MeasureDefinition measureDefinition);
+        @WebParam(name = "measureDefinitionJson", targetNamespace = "")
+        String measureDefinitionJson);
 
     /**
      * 
@@ -378,5 +339,77 @@ public interface People {
         Long personId,
         @WebParam(name = "measureType", targetNamespace = "")
         String measureType);
+
+    /**
+     * 
+     * @param personId
+     * @return
+     *     returns introsde.storage.ws.Person
+     */
+    @WebMethod
+    @WebResult(name = "person", targetNamespace = "")
+    @RequestWrapper(localName = "readPerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPerson")
+    @ResponseWrapper(localName = "readPersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.ReadPersonResponse")
+    @Action(input = "http://ws.storage.introsde/People/readPersonRequest", output = "http://ws.storage.introsde/People/readPersonResponse")
+    public Person readPerson(
+        @WebParam(name = "personId", targetNamespace = "")
+        Long personId);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<introsde.storage.ws.Person>
+     */
+    @WebMethod
+    @WebResult(name = "people", targetNamespace = "")
+    @RequestWrapper(localName = "getPersonList", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetPersonList")
+    @ResponseWrapper(localName = "getPersonListResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.GetPersonListResponse")
+    @Action(input = "http://ws.storage.introsde/People/getPersonListRequest", output = "http://ws.storage.introsde/People/getPersonListResponse")
+    public List<Person> getPersonList();
+
+    /**
+     * 
+     * @param personJson
+     * @return
+     *     returns introsde.storage.ws.Person
+     */
+    @WebMethod
+    @WebResult(name = "personId", targetNamespace = "")
+    @RequestWrapper(localName = "createPerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.CreatePerson")
+    @ResponseWrapper(localName = "createPersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.CreatePersonResponse")
+    @Action(input = "http://ws.storage.introsde/People/createPersonRequest", output = "http://ws.storage.introsde/People/createPersonResponse")
+    public Person createPerson(
+        @WebParam(name = "personJson", targetNamespace = "")
+        String personJson);
+
+    /**
+     * 
+     * @param person
+     * @return
+     *     returns java.lang.Long
+     */
+    @WebMethod
+    @WebResult(name = "personId", targetNamespace = "")
+    @RequestWrapper(localName = "updatePerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.UpdatePerson")
+    @ResponseWrapper(localName = "updatePersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.UpdatePersonResponse")
+    @Action(input = "http://ws.storage.introsde/People/updatePersonRequest", output = "http://ws.storage.introsde/People/updatePersonResponse")
+    public Long updatePerson(
+        @WebParam(name = "person", targetNamespace = "")
+        Person person);
+
+    /**
+     * 
+     * @param personId
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "ValueResult", targetNamespace = "")
+    @RequestWrapper(localName = "deletePerson", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.DeletePerson")
+    @ResponseWrapper(localName = "deletePersonResponse", targetNamespace = "http://ws.storage.introsde/", className = "introsde.storage.ws.DeletePersonResponse")
+    @Action(input = "http://ws.storage.introsde/People/deletePersonRequest", output = "http://ws.storage.introsde/People/deletePersonResponse")
+    public int deletePerson(
+        @WebParam(name = "personId", targetNamespace = "")
+        Long personId);
 
 }

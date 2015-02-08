@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">          
+  <mapping> 
+    <class-a>introsde.adapter.ws.ItemActivity</class-a>
+    <class-b>introsde.wrapper.model.MeasureActivity</class-b>   
+    <field>
+      <a>type</a>
+      <b>type</b>
+    </field>
+    <field>
+      <a>total_distance</a>
+      <b>value</b>
+    </field>
+    <field>
+      <a>start_time</a>
+      <b>timestamp</b>
+    </field>
+  </mapping>  
+</mappings>

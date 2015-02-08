@@ -1,7 +1,10 @@
 package introsde.wrapper.ws;
 
-import introsde.wrapper.model.Activities;
+import introsde.adapter.ws.Activities;
+import introsde.storage.ws.HealthMeasureHistory;
+import introsde.wrapper.model.MeasureActivity;
 import introsde.wrapper.model.MeasureWeight;
+
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -17,7 +20,7 @@ public interface WrapperUpdaterService {
 	
 	@WebMethod(operationName="getFitnessActivities")
     @WebResult(name="fitnessActivities") 
-    public Activities getRunFromFitnessActivitiesRK(@WebParam(name="accessToken") String accessToken);
+    public List<MeasureActivity> getRunFromFitnessActivitiesRK(@WebParam(name="accessToken") String accessToken);
 	
 	@WebMethod(operationName="getMeasureHistoryFromWeightRK")
     @WebResult(name="weight") 

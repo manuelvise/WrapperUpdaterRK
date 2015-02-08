@@ -6,11 +6,14 @@ import java.util.List;
 
 import introsde.adapter.ws.AdapterRunkeeper;
 import introsde.adapter.ws.AdapterRunkeeperService;
+import introsde.adapter.ws.ItemActivity;
 import introsde.adapter.ws.ItemWeight;
 import introsde.adapter.ws.Profile;
 import introsde.adapter.ws.Weights;
+import introsde.storage.ws.HealthMeasureHistory;
 import introsde.storage.ws.Person;
 import introsde.wrapper.model.Activities;
+import introsde.wrapper.model.MeasureActivity;
 import introsde.wrapper.model.MeasureWeight;
 import introsde.wrapper.util.HttpGetRequestRK;
 import introsde.wrapper.util.RunKConstants;
@@ -38,11 +41,25 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 	}
 
 	@Override
-	public Activities getRunFromFitnessActivitiesRK(String accessToken) {
+	public List<MeasureActivity> getRunFromFitnessActivitiesRK(String accessToken) {
 
-		rkAdapter.getFitnessActivities(accessToken);
+		 introsde.adapter.ws.Activities activities = rkAdapter.getFitnessActivities(accessToken);
+		 
+		 
+		 List<MeasureActivity> healthMeasures = new ArrayList<MeasureActivity>();
+		 
+		 for (ItemActivity item : activities.getItems()) {
+				DozerBeanMapper mapper = new DozerBeanMapper();
+				List myMappingFiles = new ArrayList<String>();
+				myMappingFiles.add("File:./MappingActivities.xml");
+				mapper.setMappingFiles(myMappingFiles);
+				MeasureActivity healthMeasureHistory = mapper.map(item,
+						MeasureActivity.class);
+				//SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
+				healthMeasures.add(healthMeasureHistory);
+			}
 
-		return null;
+		return healthMeasures;
 	}
 
 	@Override
