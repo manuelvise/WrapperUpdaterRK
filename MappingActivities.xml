@@ -11,11 +11,11 @@
       <b>type</b>
     </field>
     <field>
-      <a>total_distance</a>
+      <a>totalDistance</a>
       <b>value</b>
     </field>
     <field>
-      <a>start_time</a>
+      <a>startTime</a>
       <b>timestamp</b>
     </field>
   </mapping>  

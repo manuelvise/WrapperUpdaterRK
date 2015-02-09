@@ -53,8 +53,13 @@ public class WrapperUpdaterServiceImpl implements WrapperUpdaterService {
 				List myMappingFiles = new ArrayList<String>();
 				myMappingFiles.add("File:./MappingActivities.xml");
 				mapper.setMappingFiles(myMappingFiles);
-				MeasureActivity healthMeasureHistory = mapper.map(item,
+				MeasureActivity healthMeasureHistory = null;
+				try{
+				healthMeasureHistory = mapper.map(item,
 						MeasureActivity.class);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				//SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
 				healthMeasures.add(healthMeasureHistory);
 			}
